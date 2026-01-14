@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 export default function Leaderboard() {
   const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const codespace = process.env.REACT_APP_CODESPACE_NAME;
@@ -16,19 +17,39 @@ export default function Leaderboard() {
         const list = data && data.results ? data.results : Array.isArray(data) ? data : [];
         setItems(list);
       })
-      .catch((err) => console.error('Leaderboard fetch error:', err));
+      .catch((err) => console.error('Leaderboard fetch error:', err))
+      .finally(() => setLoading(false));
   }, []);
 
   return (
-    <div>
-      <h2>Leaderboard</h2>
-      <ul className="list-group">
-        {items.map((t, idx) => (
-          <li className="list-group-item" key={t.id || idx}>
-            {t.team ? t.team.name || JSON.stringify(t.team) : JSON.stringify(t)} - {t.points}
-          </li>
-        ))}
-      </ul>
+    <div className="card card-table">
+      <div className="card-body">
+        <h3 className="card-title">Leaderboard</h3>
+        {loading ? (
+          <div className="loading">Loading leaderboard…</div>
+        ) : (
+          <div className="table-responsive">
+            <table className="table table-striped table-hover table-fixed">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Team</th>
+                  <th>Points</th>
+                </tr>
+              </thead>
+              <tbody>
+                {items.map((t, idx) => (
+                  <tr key={t.id || idx}>
+                    <td>{t.id || idx + 1}</td>
+                    <td>{t.team ? (t.team.name || JSON.stringify(t.team)) : (t.team_name || '')}</td>
+                    <td>{t.points}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -1,0 +1,83 @@
+/* App styles for OctoFit frontend */
+.app-main {
+  min-height: 70vh;
+}
+
+.card-table {
+  margin-bottom: 1rem;
+}
+
+.table-fixed thead th {
+  position: sticky;
+  top: 0;
+  background: #f8f9fa;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.small-muted {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+/* Theme colors */
+body {
+  background: linear-gradient(180deg, #eef2ff 0%, #ffffff 100%);
+  color: #1f2937;
+}
+
+h1, h2, h3, h4, h5 {
+  color: #0b5ed7; /* bootstrap primary-like */
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff !important;
+}
+
+.navbar-logo {
+  height: 36px;
+  width: 36px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.12);
+  padding: 2px;
+}
+
+.table thead th {
+  background: linear-gradient(90deg, #f1f5f9, #e9f2ff);
+  color: #0b5ed7;
+}
+
+.table tbody tr td {
+  vertical-align: middle;
+}
+
+.btn-primary {
+  background-color: #0b5ed7 !important;
+  border-color: #0b5ed7 !important;
+}
+
+a {
+  color: #0b5ed7;
+}
+
+a:hover {
+  color: #084298;
+}
+
+.card {
+  box-shadow: 0 2px 8px rgba(15,23,42,0.06);
+}
+
+.app-footer {
+  padding: 2rem 0;
+  text-align: center;
+  color: #6c757d;
+}
+

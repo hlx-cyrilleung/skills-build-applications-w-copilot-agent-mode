@@ -5,6 +5,7 @@ import Leaderboard from './components/Leaderboard';
 import Teams from './components/Teams';
 import Users from './components/Users';
 import Workouts from './components/Workouts';
+import './App.css';
 
 function Home() {
   return (
@@ -18,10 +19,16 @@ function Home() {
 export default function App() {
   return (
     <BrowserRouter>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container-fluid">
-          <NavLink className="navbar-brand" to="/">OctoFit</NavLink>
-          <div className="collapse navbar-collapse">
+          <NavLink className="navbar-brand" to="/">
+            <img src="/docs/octofitapp-small.png" alt="OctoFit" className="navbar-logo" />
+            OctoFit
+          </NavLink>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon" />
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item"><NavLink className="nav-link" to="/activities">Activities</NavLink></li>
               <li className="nav-item"><NavLink className="nav-link" to="/leaderboard">Leaderboard</NavLink></li>
@@ -32,7 +39,7 @@ export default function App() {
           </div>
         </div>
       </nav>
-      <div className="container mt-3">
+      <main className="container mt-4 app-main">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/activities" element={<Activities />} />
@@ -41,7 +48,7 @@ export default function App() {
           <Route path="/users" element={<Users />} />
           <Route path="/workouts" element={<Workouts />} />
         </Routes>
-      </div>
+      </main>
     </BrowserRouter>
   );
 }

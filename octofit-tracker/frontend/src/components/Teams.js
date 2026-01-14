@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 export default function Teams() {
   const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const codespace = process.env.REACT_APP_CODESPACE_NAME;
@@ -16,17 +17,37 @@ export default function Teams() {
         const list = data && data.results ? data.results : Array.isArray(data) ? data : [];
         setItems(list);
       })
-      .catch((err) => console.error('Teams fetch error:', err));
+      .catch((err) => console.error('Teams fetch error:', err))
+      .finally(() => setLoading(false));
   }, []);
 
   return (
-    <div>
-      <h2>Teams</h2>
-      <ul className="list-group">
-        {items.map((t, idx) => (
-          <li className="list-group-item" key={t.id || idx}>{t.name || JSON.stringify(t)}</li>
-        ))}
-      </ul>
+    <div className="card card-table">
+      <div className="card-body">
+        <h3 className="card-title">Teams</h3>
+        {loading ? (
+          <div className="loading">Loading teams…</div>
+        ) : (
+          <div className="table-responsive">
+            <table className="table table-striped table-hover table-fixed">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                {items.map((t, idx) => (
+                  <tr key={t.id || idx}>
+                    <td>{t.id || idx + 1}</td>
+                    <td>{t.name || JSON.stringify(t)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
