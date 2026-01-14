@@ -6,8 +6,7 @@ export default function Teams() {
 
   useEffect(() => {
     const codespace = process.env.REACT_APP_CODESPACE_NAME;
-    const base = codespace ? `https://${codespace}-8000.app.github.dev` : 'http://127.0.0.1:8000';
-    const endpoint = `${base}/api/teams/`;
+    const endpoint = codespace ? `https://${codespace}-8000.app.github.dev/api/teams/` : 'http://127.0.0.1:8000/api/teams/';
     console.log('Teams endpoint:', endpoint);
 
     fetch(endpoint)

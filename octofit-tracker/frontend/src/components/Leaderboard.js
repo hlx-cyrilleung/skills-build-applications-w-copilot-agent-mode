@@ -6,8 +6,7 @@ export default function Leaderboard() {
 
   useEffect(() => {
     const codespace = process.env.REACT_APP_CODESPACE_NAME;
-    const base = codespace ? `https://${codespace}-8000.app.github.dev` : 'http://127.0.0.1:8000';
-    const endpoint = `${base}/api/leaderboard/`;
+    const endpoint = codespace ? `https://${codespace}-8000.app.github.dev/api/leaderboard/` : 'http://127.0.0.1:8000/api/leaderboard/';
     console.log('Leaderboard endpoint:', endpoint);
 
     fetch(endpoint)

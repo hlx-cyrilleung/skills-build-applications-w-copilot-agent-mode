@@ -6,8 +6,7 @@ export default function Workouts() {
 
   useEffect(() => {
     const codespace = process.env.REACT_APP_CODESPACE_NAME;
-    const base = codespace ? `https://${codespace}-8000.app.github.dev` : 'http://127.0.0.1:8000';
-    const endpoint = `${base}/api/workouts/`;
+    const endpoint = codespace ? `https://${codespace}-8000.app.github.dev/api/workouts/` : 'http://127.0.0.1:8000/api/workouts/';
     console.log('Workouts endpoint:', endpoint);
 
     fetch(endpoint)
